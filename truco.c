@@ -3,8 +3,6 @@
 #include <string.h>
 #include <time.h>
 
-// ======== ESTRUTURAS ========
-
 typedef struct {
     int numero;
     char naipe[10];
@@ -19,7 +17,6 @@ typedef struct {
     Carta ultimaCarta;
 } Jogador;
 
-// ======== FUNÇÕES DE CARTAS ========
 
 int calcularForca(Carta c) {
     if (c.numero == 4 && strcmp(c.naipe, "Paus") == 0) return 14;
@@ -77,7 +74,6 @@ void mostrarMao(Jogador j) {
     }
 }
 
-// ======== JOGADAS E COMPARAÇÃO ========
 
 int comparar(Carta c1, Carta c2) {
     if (c1.forca > c2.forca) return 1;
@@ -102,7 +98,7 @@ Carta escolherCarta(Jogador *j, int jogadorNum) {
     return j->mao[escolha];
 }
 
-// ======== RODADA ========
+// Rodada
 
 void jogarRodada(Jogador *j1, Jogador *j2, Carta baralho[], int *indice, int numRodada) {
     int valorRodada = 1;
@@ -136,7 +132,7 @@ void jogarRodada(Jogador *j1, Jogador *j2, Carta baralho[], int *indice, int num
             printf("\n");
         }
 
-        // Turno jogador 1
+        // jogador 1
         int turnoFeito = 0;
         while (!turnoFeito) {
             printf("\nJogador 1, sua mão:\n");
@@ -146,7 +142,7 @@ void jogarRodada(Jogador *j1, Jogador *j2, Carta baralho[], int *indice, int num
             scanf("%d", &acao);
             if (acao == 1) {
                 Carta carta1 = escolherCarta(j1, 1);
-                // Turno jogador 2
+                // jogador 2
                 int turnoFeito2 = 0;
                 while (!turnoFeito2) {
                     printf("\nJogador 2, sua mão:\n");
@@ -238,8 +234,6 @@ void jogarRodada(Jogador *j1, Jogador *j2, Carta baralho[], int *indice, int num
     printf("Placar: Jogador 1 = %d | Jogador 2 = %d\n", j1->pontos, j2->pontos);
 }
 
-// ======== PRINCIPAL ========
-
 int main() {
     srand(time(NULL));
     Jogador j1 = {.pontos = 0};
@@ -264,7 +258,7 @@ int main() {
     if (j1.pontos >= 12)
         printf(" Jogador 1 venceu!\n");
     else
-        printf("🎉 Jogador 2 venceu!\n");
+        printf(" Jogador 2 venceu!\n");
 
     return 0;
 }
